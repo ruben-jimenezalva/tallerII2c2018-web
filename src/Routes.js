@@ -7,6 +7,7 @@ import Home from './containers/home/Home';
 import Login from './containers/login/Login';
 import Register from './containers/register/Register';
 import Menu from './containers/menu/Menu';
+import AllServers from './containers/servers/server-list'
 
 export default ()=>
   <Switch>
@@ -14,6 +15,7 @@ export default ()=>
     <Route path="/login" exact component={Login} />
     <Route path="/register" exact component={Register} />
     <PrivateRoute path="/menu" exact component={Menu} />
+    <PrivateRoute path="/menu/allservers" exact component={AllServers} />
   </Switch>;
 
 

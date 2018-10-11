@@ -116,8 +116,6 @@ const auth = {
     },
 
     isAuthenticated(){
-        console.log("######################")
-        console.log(auth.get(USER_AUTHENTICATED) );
         if(auth.get(USER_AUTHENTICATED) != null){
             console.log("está autenticado");
         }else{

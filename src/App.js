@@ -9,7 +9,7 @@ import "./App.css";
 class App extends Component {
 
   handleLogout = async event => {
-    Auth.clearSession(); 
+    Auth.clearSession();
   }
 
   render() {
@@ -26,7 +26,7 @@ class App extends Component {
             <Nav pullRight>
               {Auth.isAuthenticated() ?
                 <LinkContainer to="/">
-                    <NavItem onClick={this.handleLogout}>Logout</NavItem>
+                  <NavItem onClick={this.handleLogout}>Logout</NavItem>
                 </LinkContainer>
                 :
                 <Fragment>
