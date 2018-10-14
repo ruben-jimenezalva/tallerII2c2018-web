@@ -47,6 +47,7 @@ export default class Register extends Component {
   render() {
     return (
       <div className="Register">
+        <h1 className="titleSingIn">Sign Up</h1>
         <form onSubmit={this.handleSubmit}>
         <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -71,7 +72,7 @@ export default class Register extends Component {
               onChange={this.handleChange}
               type="password"/>
           </FormGroup>
-          <Button
+          <Button bsStyle="primary"
             block
             bsSize="large"
             disabled={!this.validateForm()}

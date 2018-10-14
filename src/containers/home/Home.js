@@ -1,11 +1,26 @@
 import React, {Component} from "react";
+//import { SideNav, Nav } from 'react-sidenav';
 import "./Home.css";
+import Banner from "./Banner";
+import Auth from "../utils/auth";
 
 class Home extends Component{
     render(){
+        if(Auth.isAuthenticated()){
+            return(
+                <div className ="Home">
+                    <Banner />
+                    <form>
+                        <h3 className="HomeLoggedIn">
+                            Welcome to Comprame {Auth.getUserInfo()}
+                        </h3>
+                    </form>
+                </div>
+            );
+        }
         return(
             <div className ="Home">
-                <h1>WEB APP COMPRAME</h1>
+                <Banner />
             </div>
         );
     }

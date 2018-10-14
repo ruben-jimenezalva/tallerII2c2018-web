@@ -14,8 +14,8 @@ export default ()=>
     <Route path="/" exact component={Home} />
     <Route path="/login" exact component={Login} />
     <Route path="/register" exact component={Register} />
-    <PrivateRoute path="/menu" exact component={Menu} />
-    <PrivateRoute path="/menu/allservers" exact component={AllServers} />
+    <PrivateRoute path="/servers" exact component={Menu} />
+    <PrivateRoute path="/servers/allservers" exact component={AllServers} />
   </Switch>;
 
 

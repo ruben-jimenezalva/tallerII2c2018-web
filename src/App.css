@@ -1,7 +1,16 @@
-.App {
+/*.App {
   margin-top: 15px;
-}
+}*/
 
-.App .navbar-brand {
+/*.App .navbar-brand {
   font-weight: bold;
+}*/
+.footerApp{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(101, 135, 187);
+  color: white;
+  text-align: center;
 }

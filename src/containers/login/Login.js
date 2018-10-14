@@ -42,12 +42,13 @@ export default class Login extends Component {
 
     redirectUser = () => {
         Auth.enableAuthentication();
-        this.props.history.push("/menu");
+        this.props.history.push("/");
     };
 
     render() {
         return (
             <div className="Login">
+                <h1 className="titleLogin">Sign In</h1>
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup controlId="username" bsSize="large">
                         <ControlLabel>Username</ControlLabel>
@@ -64,7 +65,7 @@ export default class Login extends Component {
                             onChange={this.handleChange}
                             type="password" />
                     </FormGroup>
-                    <Button
+                    <Button bsStyle="primary"
                         block
                         bsSize="large"
                         disabled={!this.validateForm()}
