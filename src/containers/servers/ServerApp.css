@@ -1,0 +1,37 @@
+@media all and (min-width: 1200px) {
+    .serverBar{
+        position: relative;
+        left: 0;
+        height: 40px;
+        width: 100%;
+        background-color: rgb(101, 135, 187);
+        color: white;
+        text-align: center;
+    }
+
+    .titleServerBar{
+        position: relative;
+        top:8px;    
+    }
+
+    .serverBox{
+        position: relative;
+        top:50px;
+    }
+
+    .ServerView{
+        background-color: rgb(202, 223, 199);
+    }
+}
+
+/*
+    .ServerView{
+        position: relative;
+        height: 1000px;
+        left: 300px;
+        width: 72%;
+        background-color: rgb(202, 223, 199);
+    }
+
+
+*/

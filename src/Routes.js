@@ -6,16 +6,15 @@ import PrivateRoute from './containers/utils/PrivateRoute';
 import Home from './containers/home/Home';
 import Login from './containers/login/Login';
 import Register from './containers/register/Register';
-import Menu from './containers/menu/Menu';
-import AllServers from './containers/servers/server-list'
-
+//import Menu from './containers/menu/Menu';
+//import AllServers from './containers/servers/server-list'
+import Servers from "./containers/servers/ServerApp"
 export default ()=>
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/login" exact component={Login} />
     <Route path="/register" exact component={Register} />
-    <PrivateRoute path="/servers" exact component={Menu} />
-    <PrivateRoute path="/servers/allservers" exact component={AllServers} />
+    <PrivateRoute path="/servers" exact component={Servers} />
   </Switch>;
 
 
