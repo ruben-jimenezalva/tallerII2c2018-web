@@ -1,69 +1,29 @@
 import React from "react";
 import ServerMenu from "./ServerMenu";
 import ServerView from "./ServerView";
+import dataReceived from "./Constants";
 import "./ServerApp.css"
 
 
-
-const Algo = props => {
-    return(
-        <div>
-                <ServerView />
-                <p>HOLAAAA</p>
-                <br />
-                <br />
-                admo
-                <br />
-                dasdasa
-                fas
-                <br />
-                <br />
-                asdad
-                <br />
-                admo
-                <br />
-                <br />
-                dasdasa
-                <br />
-                fas
-                <br />
-                asdad
-                <br />
-                admo
-                <br />
-                dasdasa
-                fas
-                <br />
-                asdad
-                <p>HOLAAAA</p>
-                <br />
-                admo
-                dasdasa
-                fas
-                <br />
-                asdad
-                admo
-                <br />
-                <br />
-                dasdasa
-                <br />
-                fas
-                <br />
-                asdad
-                <br />
-                admo
-                <br />
-                dasdasa
-                fas
-                <br />
-                asdad
-        </div>
-    );
-}
-
-
 class ServerApp extends React.Component {
-  
+    constructor(props, context) {
+        super(props, context);
+
+        this.click = this.click.bind(this); 
+
+        this.state = {
+            codQuery : 0,
+            dataSend : dataReceived.DATA_FORMAT
+        };
+    }
+
+
+    click(funcKey,data){
+        this.setState({dataSend : data});
+        this.setState({codQuery : funcKey});
+    }
+
+
     render() {
         return (
             <div className="home-page">
@@ -78,13 +38,13 @@ class ServerApp extends React.Component {
 
                         <div className="col-md-8">
                             <div className="ServerView">
-                                <Algo />
+                                <ServerView codQuery={this.state.codQuery} data={this.state.dataSend}/>
                             </div>
                         </div>
 
                         <div className="col-md-4">
                             <div className="sidebar">
-                                <ServerMenu />
+                                <ServerMenu clicked={this.click}/>
                             </div>
                         </div>
 
@@ -97,4 +57,4 @@ class ServerApp extends React.Component {
     }
 }
 
-  export default ServerApp;
+  export default (ServerApp);

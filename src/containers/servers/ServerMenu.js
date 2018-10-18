@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button, Form, FormGroup, ControlLabel, FormControl, Nav, NavItem } from "react-bootstrap";
-
+import selKey from "./Constants";
 
 class Menu extends Component {
 
@@ -8,65 +8,112 @@ class Menu extends Component {
         super(props, context);
 
         this.handleShow = this.handleShow.bind(this);
+        this.handleDone = this.handleDone.bind(this);
         this.handleHide = this.handleHide.bind(this);
 
-        this.state = { showSingleForm: false };
-        this.state = { showFullForm: false };
+        this.state = { 
+            showSingleForm: false,
+            showFullForm: false,
+            seletedKey: 0,
+            id_server :"",
+            name_server :"",
+            createdBy_server :"",
+            lastConection_server:"",
+            createdTime_server :"",
+            _rev_server :""
+        };
     }
 
+
+    handleChange = event => {
+        event.preventDefault();
+        this.setState({
+            [event.target.id]: event.target.value
+        });
+    }
+
+
     handleShow(selectedKey) {
+
+        this.setState({ seletedKey: selectedKey });
+
         switch (selectedKey) {
 
-            case 4:
-            case 5:
+            case selKey.ALL_SERVERS:
+                this.props.clicked(this.state.seletedKey)
+                break;
+
+            case selKey.CREATE_SERVER:
+            case selKey.UPDATE_SERVER:
                 this.setState({ showFullForm: true });
                 break;
 
-            default:
+            case selKey.DELETE_SERVER:
+            case selKey.RESET_TOKEN:
+            case selKey.SINGLE_SERVER:
                 this.setState({ showSingleForm: true });
                 break;
+
+            default: break;
         }
     }
 
     handleHide() {
-        this.setState({ showSingleForm: false });
         this.setState({ showFullForm: false });
+        this.setState({ showSingleForm: false });        
     }
 
+    handleDone() {
+        var dataToSend = selKey.DATA_FORMAT;
+        dataToSend.id = this.state.id_server; 
+        dataToSend.createdBy = this.state.createdBy_server;
+        dataToSend.name =  this.state.name_server;
+        dataToSend.lastConection = this.state.lastConection_server;
+        dataToSend.createdTime = this.state.createdTime_server;
+        dataToSend._rev = this.state._rev_server;
 
-    handleSelect(selectedKey) {
-        alert(`selected ${selectedKey}`);
+        this.props.clicked(this.state.seletedKey,dataToSend)
+
+        this.setState({id_server :""});
+        this.setState({name_server :""});
+        this.setState({lastConection_server :""});
+        this.setState({createdBy_server :""});
+        this.setState({_rev_server :""});
+        this.setState({createdTime_server :""});
+
+        this.handleHide();
     }
+
 
     render() {
         return (
             <div className="Menu">
                 <Nav bsStyle="pills" stacked onSelect={this.handleShow}>
-                    <br />
-                    <NavItem eventKey={1} title="Item">
+                    <p />
+                    <NavItem eventKey={selKey.ALL_SERVERS} title="Item">
                         GetAllServer
                     </NavItem>
-                    <br />
-                    <NavItem eventKey={2} title="Item">
+                    <p />
+                    <NavItem eventKey={selKey.SINGLE_SERVER} title="Item">
                         GetSingleServer
                     </NavItem>
-                    <br />
-                    <NavItem eventKey={4} title="Item">
+                    <p />
+                    <NavItem eventKey={selKey.CREATE_SERVER} title="Item">
                         Create Server
                     </NavItem>
-                    <br />
-                    <NavItem eventKey={5} title="Item">
+                    <p />
+                    <NavItem eventKey={selKey.UPDATE_SERVER} title="Item">
                         Update Server
                     </NavItem>
-                    <br />
-                    <NavItem eventKey={6} title="Item">
+                    <p />
+                    <NavItem eventKey={selKey.DELETE_SERVER} title="Item">
                         Delete Server
                     </NavItem>
-                    <br />
-                    <NavItem eventKey={7} title="Item">
+                    <p />
+                    <NavItem eventKey={selKey.RESET_TOKEN} title="Item">
                         Reset Token
                     </NavItem>
-                    <br />
+                    <p />
                 </Nav>
 
 
@@ -82,17 +129,22 @@ class Menu extends Component {
 
                     <Modal.Body>
                         <Form inline>
-                            <FormGroup controlId="SingleServerId">
-                                <ControlLabel>Id</ControlLabel>{' '}
-                                <FormControl type="Id" />
+                            <FormGroup 
+                                controlId="id_server"
+                                value={this.state.id_server}
+                                onChange={this.handleChange}
+                                type="id" >
+                                <ControlLabel id={this.state.value}>Id</ControlLabel>{' '}
+                                <FormControl/>
                             </FormGroup>
                         </Form>
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button type="submit" onClick={this.handleHide}>Done</Button>
+                        <Button type="submit" onClick={this.handleDone}>Done</Button>
                     </Modal.Footer>
                 </Modal>
+
 
 
                 <Modal
@@ -111,23 +163,35 @@ class Menu extends Component {
                         <div className="col-md-6">
                             <Form>
                                 <p>
-                                    <FormGroup controlId="ServerName">
+                                    <FormGroup 
+                                        controlId="name_server"
+                                        value={this.state.name_server}
+                                        onChange={this.handleChange}
+                                        type="Name">
                                         <ControlLabel>Name</ControlLabel>
-                                        <FormControl type="Name" />
+                                        <FormControl/>
                                     </FormGroup>
                                 <p>
 
                                 </p>
-                                    <FormGroup controlId="ServerCreatedBy">
+                                    <FormGroup 
+                                        controlId="createdBy_server"
+                                        value={this.state.createdBy_server}
+                                        onChange={this.handleChange}
+                                        type="CreatedBy">
                                         <ControlLabel>CreatedBy</ControlLabel>
-                                        <FormControl type="CreatedBy" />
+                                        <FormControl/>
                                     </FormGroup>
                                 </p>
 
                                 <p>
-                                    <FormGroup controlId="Server_nev">
+                                    <FormGroup 
+                                        controlId="_rev_server"
+                                        value={this.state._rev_server}
+                                        onChange={this.handleChange}
+                                        type="_nev">
                                         <ControlLabel>_nev</ControlLabel>
-                                        <FormControl type="_nev" />
+                                        <FormControl/>
                                     </FormGroup>
                                 </p>
                             </Form>
@@ -136,23 +200,35 @@ class Menu extends Component {
                         <div className="col-md-6">
                             <Form>
                                 <p>
-                                    <FormGroup controlId="ServerId">
+                                    <FormGroup 
+                                        controlId="id_server"
+                                        value={this.state.id_server}
+                                        onChange={this.handleChange}
+                                        type="id" >
                                         <ControlLabel>id</ControlLabel>
-                                        <FormControl type="id" />
+                                        <FormControl/>
                                     </FormGroup>
                                 </p>
 
                                 <p>
-                                    <FormGroup controlId="ServerLastConection">
+                                    <FormGroup
+                                        controlId="lastConection_server"
+                                        value={this.state.lastConection_server}
+                                        onChange={this.handleChange}
+                                        type="LastConection">
                                         <ControlLabel>LastConection</ControlLabel>
-                                        <FormControl type="LastConection" />
+                                        <FormControl />
                                     </FormGroup>
                                 </p>
 
                                 <p>
-                                    <FormGroup controlId="ServerCreatedTime">
+                                    <FormGroup 
+                                        controlId="createdTime_server"
+                                        value={this.state.createdTime_server}
+                                        onChange={this.handleChange}
+                                        type="CreatedTime">
                                         <ControlLabel>CreatedTime</ControlLabel>
-                                        <FormControl type="CreatedTime" />
+                                        <FormControl/>
                                     </FormGroup>
                                 </p>
                             </Form>
@@ -162,7 +238,7 @@ class Menu extends Component {
 
 
                     <Modal.Footer>
-                        <Button type="submit" onClick={this.handleHide}>Done</Button>
+                        <Button type="submit" onClick={this.handleDone}>Done</Button>
                     </Modal.Footer>
 
                 </Modal>

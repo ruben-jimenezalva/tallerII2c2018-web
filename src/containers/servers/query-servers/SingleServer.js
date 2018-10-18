@@ -1,8 +1,8 @@
 import React from "react";
-import ServerRow from "./server-row";
+import ServerRow from "./Server-row";
 import Axios from "axios";
-import ApiLinks from "../utils/ApiLinks";
-import Auth from "../utils/auth";
+import ApiLinks from "../../utils/ApiLinks";
+import Auth from "../../utils/auth";
 import "./server-list.css"
 
 class serverList extends React.Component {
@@ -34,23 +34,34 @@ class serverList extends React.Component {
             var data = this.state.servers;
             return (
                 <ul>
-                    <form class="metadataServers">
-                        <p> total: {data.metadata.total}</p>
+                    <form class="metadataServer">
                         <p> version: {data.metadata.version}</p>
                     </form>
                     <p>
                         {
-                            data.server.map((server) => {
+                            () => {
                                 return <ServerRow
-                                    id={server.id}
-                                    _rev={server._rev}
-                                    createdBy={server.createdBy}
-                                    createdTime={server.createdTime}
-                                    name={server.name}
-                                    lastConnection={server.lastConnection} />
-                            })
+                                    id={data.server.id}
+                                    _rev={data.server._rev}
+                                    createdBy={data.server.createdBy}
+                                    createdTime={data.server.createdTime}
+                                    name={data.server.name}
+                                    lastConnection={data.server.lastConnection} />
+                            }
                         }
                     </p>
+
+                        {
+                            ()=>{
+                                if(data.token){
+                                    return
+                                    <form class="tokenServer">
+                                        <p> expiresAt: {data.token.expiresAt}</p>
+                                        <p> token: {data.token.token}</p>
+                                    </form>
+                                }
+                            }
+                        }
                 </ul>
             );
 

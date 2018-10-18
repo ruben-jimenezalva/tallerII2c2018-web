@@ -3,7 +3,7 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import Axios from "axios";
 import "./Login.css";
 import Auth from "../utils/auth";
-var ApiLinks = require("../utils/ApiLinks")
+var ApiLinks = require("../utils/ApiLinks");
 
 export default class Login extends Component {
     constructor(props) {
