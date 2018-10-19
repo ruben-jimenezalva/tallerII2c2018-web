@@ -43,7 +43,7 @@ class ServerApp extends React.Component {
                         </div>
 
                         <div className="col-md-4">
-                            <div className="sidebar">
+                            <div className="ServerMenu">
                                 <ServerMenu clicked={this.click}/>
                             </div>
                         </div>

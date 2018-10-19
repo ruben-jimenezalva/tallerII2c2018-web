@@ -21,6 +21,11 @@
 
     .ServerView{
         background-color: rgb(202, 223, 199);
+        word-wrap: break-word;
+    }
+
+    .ServerMenu{
+        word-wrap: break-word;
     }
 }
 

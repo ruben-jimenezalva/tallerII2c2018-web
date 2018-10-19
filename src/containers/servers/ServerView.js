@@ -1,63 +1,40 @@
 import React,{Component} from "react";
 import query from "./Constants";
 import ServerList from "./query-servers/Server-list";
-import SingleServer from "./query-servers/Server-list";
-
-function deleteServer(){
-    alert("deleteServer");
-}
-
-
-function resetToken(){
-    alert("resetToken");
-}
-
-
-function getSingleServer(){
-    alert("getSingleServer");
-}
-
-function updateServer(){
-    alert("updateServer");
-}
-
-function createServer(){
-    alert("createServer");
-}
-
+import SingleServer from "./query-servers/SingleServer";
 
 
 class ServerView extends Component{
     constructor(props, context) {
         super(props, context);
         
-        this.state = ({queryServer: false});
+        this.state = (
+            {optionListServer: false},
+            {optionSingleServer: false},
+            {dataToSend : ""},
+            {codQuery : ""}
+        );
     }
     
-    handleQuery(codQuery,data){
-        switch(codQuery){
+
+    handleQuery(cod,data){
+
+        this.setState({dataToSend : data});
+        this.setState({codQuery : cod});
+        
+        switch(cod){
             case query.ALL_SERVERS:
-                this.setState({queryServer: true});
+                this.setState({optionListServer: true});
+                this.setState({optionSingleServer: false});
                 break;
 
             case query.DELETE_SERVER:
-                deleteServer(data);
-                break;
-
             case query.RESET_TOKEN:
-                resetToken(data);
-                break;
-
             case query.SINGLE_SERVER:
-                getSingleServer(data);
-                break;
-
             case query.UPDATE_SERVER:
-                updateServer(data);
-                break;
-
             case query.CREATE_SERVER:
-                createServer(data);
+                this.setState({optionSingleServer: true});
+                this.setState({optionListServer: false});
                 break;
 
             default: break;
@@ -65,16 +42,20 @@ class ServerView extends Component{
         }
     }
 
-
     componentWillReceiveProps(nextProps){
-        this.handleQuery(nextProps.codQuery,nextProps.data)
-        this.setState({queryServer : true});
+        this.handleQuery(nextProps.codQuery,nextProps.data);
     }
 
+
     render(){
-        if(this.state.queryServer){
+
+        if(this.state.optionListServer){
             return(
                 <ServerList />
+            );
+        }else if (this.state.optionSingleServer){
+            return(
+                <SingleServer codQuery={this.state.codQuery} data={this.state.dataToSend}/>
             );
         }
         return(
