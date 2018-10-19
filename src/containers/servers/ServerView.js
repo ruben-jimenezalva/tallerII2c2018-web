@@ -60,7 +60,7 @@ class ServerView extends Component{
         }
         return(
             <div>
-                <h1>
+                <h1 className="text-center">
                     SELECT ONE OPTION 
                 </h1>
             </div>

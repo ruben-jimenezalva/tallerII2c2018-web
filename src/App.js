@@ -14,13 +14,18 @@ class App extends Component {
     return (
       <div className="App container">
         <Header />
+        <Routes />
         <footer className="footerApp">
             Taller de Programación II  Derechos reservados &copy; 2C-2018                  
         </footer>
-        <Routes />
       </div>
     );
   }
 }
 
 export default App;
+
+/*
+
+
+*/

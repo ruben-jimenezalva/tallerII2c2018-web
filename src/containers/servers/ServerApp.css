@@ -18,25 +18,14 @@
         position: relative;
         top:50px;
     }
-
+    
     .ServerView{
-        background-color: rgb(202, 223, 199);
+        background-color: rgb(215, 250, 208);
         word-wrap: break-word;
+        height: 100%;
     }
 
     .ServerMenu{
         word-wrap: break-word;
     }
 }
-
-/*
-    .ServerView{
-        position: relative;
-        height: 1000px;
-        left: 300px;
-        width: 72%;
-        background-color: rgb(202, 223, 199);
-    }
-
-
-*/

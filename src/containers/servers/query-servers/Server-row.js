@@ -1,6 +1,4 @@
-//const React = import("react");
 import React from "react";
-import "./Server-row.css";
 
 class ServerRow extends React.Component{
     render(){
