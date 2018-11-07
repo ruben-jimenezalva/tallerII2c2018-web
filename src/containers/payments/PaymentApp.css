@@ -1,0 +1,31 @@
+@media all and (min-width: 1200px) {
+    .PaymentBar{
+        position: relative;
+        left: 0;
+        height: 40px;
+        width: 100%;
+        background-color: rgb(118, 187, 101);
+        color: white;
+        text-align: center;
+    }
+
+    .titlePaymentBar{
+        position: relative;
+        top:8px;    
+    }
+
+    .PaymentBox{
+        position: relative;
+        top:50px;
+    }
+    
+    .PaymentView{
+        background-color: rgb(215, 250, 208);
+        word-wrap: break-word;
+        height: 100%;
+    }
+
+    .PaymentMenu{
+        word-wrap: break-word;
+    }
+}

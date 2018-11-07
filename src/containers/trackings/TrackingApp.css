@@ -1,0 +1,31 @@
+@media all and (min-width: 1200px) {
+    .trackingBar{
+        position: relative;
+        left: 0;
+        height: 40px;
+        width: 100%;
+        background-color: rgb(252, 249, 103);
+        color: black;
+        text-align: center;
+    }
+
+    .titleTrackingBar{
+        position: relative;
+        top:8px;    
+    }
+
+    .trackingBox{
+        position: relative;
+        top:50px;
+    }
+    
+    .TrackingView{
+        background-color: rgb(215, 250, 208);
+        word-wrap: break-word;
+        height: 100%;
+    }
+
+    .TrackingMenu{
+        word-wrap: break-word;
+    }
+}

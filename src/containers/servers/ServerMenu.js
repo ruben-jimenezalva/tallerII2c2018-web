@@ -80,7 +80,7 @@ class Menu extends Component {
         this.setState({createdBy_server :""});
         this.setState({_rev_server :""});
         this.setState({createdTime_server :""});
-        this.setState({selectedKey: 0});
+        //this.setState({selectedKey: 0});
 
         this.handleHide();
     }
@@ -90,7 +90,7 @@ class Menu extends Component {
         return (
             <div className="Menu">
                 <br/>
-                <Nav bsStyle="pills" stacked onSelect={this.handleShow}>
+                <Nav bsStyle="pills" activeKey={this.state.selectedKey} stacked onSelect={this.handleShow}>
                     
                     <NavItem eventKey={selKey.ALL_SERVERS} title="Item">
                         GetAllServer
