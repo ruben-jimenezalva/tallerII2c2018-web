@@ -10,7 +10,7 @@ class PaymentRow extends React.Component{
                     value: {this.props.value}<br/>
                     status: {this.props.status}<br/>
                     paymentMethod:<br/>
-                    &nbsp; epiration_month: {this.props.expiration_month}<br/>
+                    &nbsp; expiration_month: {this.props.expiration_month}<br/>
                     &nbsp; expiration_year: {this.props.expiration_year}<br/>
                     &nbsp; method: {this.props.method}<br/>
                     &nbsp; number: {this.props.number}<br/>

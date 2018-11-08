@@ -8,7 +8,9 @@ import code from "../Constants"
 class SinglePayment extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {payment: ""};
+        this.state = {payment: "",
+            responseError: false
+        };
     }
 
 
@@ -28,6 +30,7 @@ class SinglePayment extends React.Component {
             })
             .catch(function (error) {
                 console.log(error);
+                currentComponent.setState({responseError:true});
             });
     }
 
@@ -46,6 +49,7 @@ class SinglePayment extends React.Component {
             })
             .catch(function (error) {
                 console.log(error);
+                currentComponent.setState({responseError:true});
             });
 
     }
@@ -65,6 +69,7 @@ class SinglePayment extends React.Component {
             })
             .catch(function (error) {
                 console.log(error);
+                this.setState({responseError:true});
             });*/
     }
 
@@ -87,19 +92,21 @@ class SinglePayment extends React.Component {
         }
     }
 
-
-
     componentWillMount() {
         this.handleQuery(this.props.codQuery,this.props.data);
     }
 
     componentWillReceiveProps(nextProps){
+        this.setState({responseError: false});
         this.handleQuery(nextProps.codQuery,nextProps.data);
     }
 
     render() {
 
-        if (this.state.payment !== "") {
+        if (this.state.responseError) {
+            return <p className="text-center">Not Results</p>            
+
+        }else if (this.state.payment !== "") {
             var data = this.state.payment;
 
             return<ul>
@@ -116,7 +123,7 @@ class SinglePayment extends React.Component {
             </ul>
 
         } else {
-            return <p className="text-center">Not Results</p>
+            return <p className="text-center">Loading...</p>
         }
     }
 }

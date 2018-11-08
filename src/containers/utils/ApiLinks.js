@@ -1,4 +1,5 @@
-const url = 'http://localhost:8080';
+var urlLocal = 'http://localhost:8080';
+var url = 'https://shared-server-taller2-2c-2018.herokuapp.com';
 
 module.exports = {
      Login : url+'/api/user/login',

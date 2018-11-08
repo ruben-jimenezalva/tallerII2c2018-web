@@ -7,10 +7,13 @@ import Auth from "../../utils/auth";
 class PaymenthodList extends React.Component {
     constructor(props) {
         super(props)    
-        this.state = { paymethods: ""};
+        this.state = { paymethods: "",
+            responseError: false
+        };
     }
 
     componentWillMount() {
+        this.setState({responseError: false});
         var config = {
             headers: { 'Authorization':Auth.getToken() }
         };
@@ -21,15 +24,21 @@ class PaymenthodList extends React.Component {
             .get(ApiLinks.Paymethods, config)
             .then(function (response) {
                 currentComponent.setState({paymethods: response.data});
+                if(response.data.length === 0)
+                    currentComponent.setState({responseError: true});
             })
             .catch(function (error) {
                 console.log(error);
+                currentComponent.setState({responseError:true});
             });
     }
 
     render() {
 
-        if (this.state.paymethods !== "") {
+        if(this.state.responseError) {
+            return <p className="text-center">Not Results</p>
+        
+        }else if (this.state.paymethods !== "") {
             var data = this.state.paymethods;
             return (
                 <ul>
@@ -51,7 +60,7 @@ class PaymenthodList extends React.Component {
             );
 
         } else {
-            return <p className="text-center">Error to Connect</p>
+            return <p className="text-center">Loading...</p>
         }
     }
 }

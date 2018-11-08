@@ -8,7 +8,9 @@ import code from "../Constants"
 class SingleServer extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {server: ""};
+        this.state = {server: "",
+            responseError:false
+        };
     }
 
 
@@ -27,6 +29,7 @@ class SingleServer extends React.Component {
                 currentComponent.setState({server: response.data});
             })
             .catch(function (error) {
+                currentComponent.setState({responseError: true});
                 console.log(error);
             });
     }
@@ -45,6 +48,7 @@ class SingleServer extends React.Component {
                 currentComponent.setState({server: response.data});
             })
             .catch(function (error) {
+                currentComponent.setState({responseError: true});
                 console.log(error);
             });
     }
@@ -59,6 +63,7 @@ class SingleServer extends React.Component {
                 currentComponent.setState({server: response.data});
             })
             .catch(function (error) {
+                currentComponent.setState({responseError: true});
                 console.log(error);
             });
     }
@@ -79,6 +84,7 @@ class SingleServer extends React.Component {
                 currentComponent.setState({server: response.data});
             })
             .catch(function (error) {
+                currentComponent.setState({responseError: true});
                 console.log(error);
             });
 
@@ -98,6 +104,7 @@ class SingleServer extends React.Component {
                 currentComponent.setState({server: response.data});
             })
             .catch(function (error) {
+                currentComponent.setState({responseError: true});
                 console.log(error);
             });
     }
@@ -130,19 +137,21 @@ class SingleServer extends React.Component {
         }
     }
 
-
-
     componentWillMount() {
         this.handleQuery(this.props.codQuery,this.props.data);
     }
 
     componentWillReceiveProps(nextProps){
+        this.setState({responseError: false});
         this.handleQuery(nextProps.codQuery,nextProps.data);
     }
 
     render() {
 
-        if (this.state.server !== "") {
+        if (this.state.responseError) {
+            return <p className="text-center">Not Results</p>            
+
+        }else if (this.state.server !== "") {
             var data = this.state.server;
             if(data.server && data.server.token){
 
@@ -184,7 +193,7 @@ class SingleServer extends React.Component {
             }
 
         } else {
-            return <p className="text-center">Not Results</p>
+            return <p className="text-center">Loading...</p>
         }
     }
 }

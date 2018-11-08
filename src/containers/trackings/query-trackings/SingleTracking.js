@@ -8,7 +8,9 @@ import code from "../Constants"
 class SingleTracking extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {tracking: ""};
+        this.state = {tracking: "",
+            responseError:false
+        };
     }
 
 
@@ -27,6 +29,7 @@ class SingleTracking extends React.Component {
                 currentComponent.setState({tracking: response.data});
             })
             .catch(function (error) {
+                currentComponent.setState({responseError: true});
                 console.log(error);
             });
     }
@@ -45,6 +48,7 @@ class SingleTracking extends React.Component {
                 currentComponent.setState({tracking: response.data});
             })
             .catch(function (error) {
+                currentComponent.setState({responseError: true});
                 console.log(error);
             });
 
@@ -94,12 +98,16 @@ class SingleTracking extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
+        this.setState({responseError: false});
         this.handleQuery(nextProps.codQuery,nextProps.data);
     }
 
     render() {
 
-        if (this.state.tracking !== "") {
+        if (this.state.responseError) {
+            return <p className="text-center">Not Results</p>
+        
+        }else if (this.state.tracking !== "") {
             var data = this.state.tracking;
 
             return <ul>
@@ -109,7 +117,7 @@ class SingleTracking extends React.Component {
                 status={data.status}/>
                 </ul>
         } else {
-            return <p className="text-center">Not Results</p>
+            return <p className="text-center">Loading...</p>
         }
     }
 }

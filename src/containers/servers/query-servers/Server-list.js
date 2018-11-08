@@ -7,10 +7,13 @@ import Auth from "../../utils/auth";
 class serverList extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { servers: "", errorMessage: "" };
+        this.state = { servers: "",
+            responseError: false 
+        };
     }
 
     componentWillMount() {
+        this.setState({responseError: false});
         var config = {
             headers: { 'Authorization':Auth.getToken() }
         };
@@ -21,15 +24,21 @@ class serverList extends React.Component {
             .get(ApiLinks.Servers, config)
             .then(function (response) {
                 currentComponent.setState({servers: response.data});
+                if(response.data.length === 0)
+                    currentComponent.setState({responseError: true});
             })
             .catch(function (error) {
                 console.log(error);
+                currentComponent.setState({responseError: true});                
             });
     }
 
     render() {
 
-        if (this.state.servers !== "") {
+        if (this.state.responseError) {
+            return <p className="text-center">Not Results</p>
+        
+        }else if (this.state.servers !== "") {
             var data = this.state.servers;
             return (
                 <ul>
@@ -56,7 +65,7 @@ class serverList extends React.Component {
             );
 
         } else {
-            return <p className="text-center">Error to Connect</p>
+            return <p className="text-center">Loading...</p>
         }
     }
 }
