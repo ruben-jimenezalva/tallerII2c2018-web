@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from "./containers/utils/auth"
+//import './Header.css';
 
 const LoggedOutView = props => {
     if (!Auth.isAuthenticated()) {
@@ -84,7 +85,7 @@ const LoggedInView = props => {
 class Header extends React.Component {
     render() {
         return (
-            <div className="Appcontainer">
+            <div className="AppcontainerHeader">
 
                 <nav className="navbar navbar-light">
                     <div className="containerHeader">

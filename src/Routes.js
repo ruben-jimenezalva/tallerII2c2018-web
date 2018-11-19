@@ -6,7 +6,8 @@ import PrivateRoute from './containers/utils/PrivateRoute';
 import Home from './containers/home/Home';
 import Login from './containers/login/Login';
 import Register from './containers/register/Register';
-import Servers from "./containers/servers/ServerApp";
+//import Servers from "./containers/servers/ServerApp";
+import Servers from "./containers/servers2/serverApp";
 import Payments from './containers/payments/PaymentApp';
 import Tracking from './containers/trackings/TrackingApp';
 export default ()=>

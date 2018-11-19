@@ -4,7 +4,6 @@ import ServerView from "./ServerView";
 import dataReceived from "./Constants";
 import "./ServerApp.css"
 
-
 class ServerApp extends React.Component {
     constructor(props, context) {
         super(props, context);

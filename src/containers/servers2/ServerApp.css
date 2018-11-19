@@ -2,30 +2,23 @@
     .serverBar{
         position: relative;
         left: 0;
-        height: 40px;
+        top: -20px;    
+        height: 70px;
         width: 100%;
-        background-color: rgb(101, 135, 187);
+        background-color: rgb(0, 89, 255);
         color: white;
         text-align: center;
     }
 
     .titleServerBar{
         position: relative;
-        top:8px;
-    }
-
-    .serverBox{
-        position: relative;
-        top:50px;
+        top:15px;    
     }
     
     .ServerView{
-        background-color: rgb(215, 250, 208);
+        position: relative;
+        top:0px;    
         word-wrap: break-word;
         height: 100%;
-    }
-
-    .ServerMenu{
-        word-wrap: break-word;
     }
 }

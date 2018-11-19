@@ -16,7 +16,7 @@ class App extends Component {
         <Header />
         <Routes />
         <footer className="footerApp">
-            Taller de Programación II  Derechos reservados &copy; 2C-2018                  
+            Taller de Programación II  Derechos reservados &copy; 2C-2018
         </footer>
       </div>
     );
