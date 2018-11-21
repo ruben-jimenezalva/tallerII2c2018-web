@@ -55,7 +55,7 @@ export default class ABMServer extends React.Component {
                 dialogClassName="custom-modal">
 
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-sm">Enter the Server Id</Modal.Title>
+                    <Modal.Title id="contained-modal-title-sm">Enter the new data </Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
