@@ -17,6 +17,7 @@ export default class ABMServer extends React.Component {
 
 
     componentWillReceiveProps(nextProps){
+        this.handleHide();
         if(nextProps.row !== ""){
             this.setState({showEditRow: true});
             this.setState({id_server: nextProps.row.id});

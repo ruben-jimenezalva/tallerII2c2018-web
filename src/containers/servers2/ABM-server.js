@@ -4,12 +4,14 @@ import ApiLinks from "../utils/ApiLinks";
 import Auth from "../utils/auth";
 import ServerTable from "./ServerTable";
 import ModalEdit from "./ModalEdit";
+import { ModalReset } from "./ModalReset";
 
 export default class ABMServer extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
             row: "",
+            token:""
         }
     }
 
@@ -33,7 +35,7 @@ export default class ABMServer extends React.Component {
             .catch(function (error) {
                 currentComponent.setState({ responseError: true });
                 console.log(error);
-                alert("Error to crete Server");
+                alert("Error to create Server");
             });
     }
 
@@ -48,12 +50,13 @@ export default class ABMServer extends React.Component {
         Axios
             .post(link)
             .then(function (response) {
-                currentComponent.setState({ server: response.data });
-                alert(response.data.server.token.token);
+                //currentComponent.setState({ server: response.data });
+                currentComponent.setState({token:response.data.server.token.token});
             })
             .catch(function (error) {
                 currentComponent.setState({ responseError: true });
                 console.log(error);
+                alert("Error to reset token Server");
             });
     }
 
@@ -80,6 +83,7 @@ export default class ABMServer extends React.Component {
             .catch(function (error) {
                 currentComponent.setState({ responseError: true });
                 console.log(error);
+                alert("Error to delete Server");
             });
     }
 
@@ -93,8 +97,6 @@ export default class ABMServer extends React.Component {
     }
 
     updateServer(data) {
-        console.log(data);
-        /*
         var config = {
             headers: { 'Authorization': Auth.getToken() }
         };
@@ -110,14 +112,15 @@ export default class ABMServer extends React.Component {
             .catch(function (error) {
                 currentComponent.setState({ responseError: true });
                 console.log(error);
+                alert("Error to update Server");
             });
-        */            
         this.setState({row:""});
     }
 
     render() {
         return (
             <div>
+            <ModalReset {...this.state}/>
             <ModalEdit
                 updateServer={this.updateServer.bind(this)}
                 {...this.state}>

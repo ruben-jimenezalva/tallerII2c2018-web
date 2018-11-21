@@ -70,7 +70,6 @@ export default class ServerTable extends React.Component {
     }
 
     onClickEditServer(cell, row, rowIndex){
-        //alert(row);
         this.props.onCellEdit(row);
     }
 
