@@ -2,15 +2,14 @@ import React from "react";
 import Axios from "axios";
 import ApiLinks from "../utils/ApiLinks";
 import Auth from "../utils/auth";
-import TrackingTable from "./TrackingTable";
-import ModalEditTracking from "./ModalEditTracking";
+import PaymentTable from "./PaymentTable";
+import ModalEditPayment from "./ModalEditPayment";
 
-export default class ABMTracking extends React.Component {
+export default class ABMPayment extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
             row: "",
-            token:""
         }
     }
 
@@ -18,23 +17,23 @@ export default class ABMTracking extends React.Component {
         this.setState({row:row});
     }
 
-    updateTracking(data) {
+    updatePayment(data) {
         var config = {
             headers: { 'Authorization': Auth.getToken() }
         };
 
         let currentComponent = this;
-        var link = ApiLinks.Trackings + "/" + data.id;
+        var link = ApiLinks.Payments + "/" + data.transaction_id;
 
         Axios
             .put(link, data, config)
             .then(function (response) {
-                currentComponent.setState({ tracking: response.data });
+                currentComponent.setState({ payment: response.data });
             })
             .catch(function (error) {
                 currentComponent.setState({ responseError: true });
                 console.log(error);
-                alert("Error to update Tracking");
+                alert("Error to update Payment");
             });
         this.setState({row:""});
     }
@@ -42,11 +41,11 @@ export default class ABMTracking extends React.Component {
     render() {
         return (
             <div>
-            <ModalEditTracking
-                updateTracking={this.updateTracking.bind(this)}
+            <ModalEditPayment
+                updatePayment={this.updatePayment.bind(this)}
                 {...this.state}>
-            </ModalEditTracking>
-            <TrackingTable
+            </ModalEditPayment>
+            <PaymentTable
                 onCellEdit={this.onCellEdit.bind(this)}
                 {...this.state} />
             </div>

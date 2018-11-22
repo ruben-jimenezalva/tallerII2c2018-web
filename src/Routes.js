@@ -9,7 +9,7 @@ import Register from './containers/register/Register';
 //import Servers from "./containers/servers/ServerApp";
 import Servers from "./containers/servers2/serverApp";
 //import Payments from './containers/payments/PaymentApp';
-import ReacSlice from './containers/payments/ReactSlice';
+import Payments from './containers/payments2/PaymentApp';
 //import Tracking from './containers/trackings/TrackingApp';
 import Tracking from './containers/trackings2/TrackingApp';
 export default ()=>
@@ -18,7 +18,7 @@ export default ()=>
     <Route path="/login" exact component={Login} />
     <Route path="/register" exact component={Register} />
     <PrivateRoute path="/servers" exact component={Servers} />
-    <PrivateRoute path="/payments" exact component={ReacSlice} />
+    <PrivateRoute path="/payments" exact component={Payments} />
     <PrivateRoute path="/trackings" exact component={Tracking} />
   </Switch>;
 

@@ -115,6 +115,7 @@ export default class ABMServer extends React.Component {
                 alert("Error to update Server");
             });
         this.setState({row:""});
+        this.setState({token:""});
     }
 
     render() {
