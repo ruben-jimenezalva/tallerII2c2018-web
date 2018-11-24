@@ -65,7 +65,7 @@ const LoggedInView = props => {
                 </li>
 
                 <li className="nav-item">
-                    <Link to="/graphics" className="nav-link">
+                    <Link to="/reports" className="nav-link">
                         Reports
                     </Link>
                 </li>

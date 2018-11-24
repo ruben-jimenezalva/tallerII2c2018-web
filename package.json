@@ -13,7 +13,7 @@
     "react-router-bootstrap": "^0.24.4",
     "react-burger-menu": "^2.5.4",
     "react-bootstrap-table": "^4.3.1",
-    "react-native-app-intro-slider": "^1.0.1"
+    "recharts": "^1.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

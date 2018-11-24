@@ -12,6 +12,7 @@ import Servers from "./components/servers2/serverApp";
 import Payments from './components/payments2/PaymentApp';
 //import Tracking from './components/trackings/TrackingApp';
 import Tracking from './components/trackings2/TrackingApp';
+import Report from './components/reports/ReportApp';
 export default ()=>
   <Switch>
     <Route path="/" exact component={Home} />
@@ -20,6 +21,7 @@ export default ()=>
     <PrivateRoute path="/servers" exact component={Servers} />
     <PrivateRoute path="/payments" exact component={Payments} />
     <PrivateRoute path="/trackings" exact component={Tracking} />
+    <PrivateRoute path="/reports" exact component={Report} />
   </Switch>;
 
 
