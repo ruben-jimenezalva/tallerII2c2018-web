@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Auth from "./containers/utils/auth"
+import Auth from "./components/utils/auth"
 //import './Header.css';
 
 const LoggedOutView = props => {

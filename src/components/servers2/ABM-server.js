@@ -37,6 +37,7 @@ export default class ABMServer extends React.Component {
                 console.log(error);
                 alert("Error to create Server");
             });
+        this.setState({row:""});        
     }
 
     onResetServer(row) {
@@ -58,6 +59,7 @@ export default class ABMServer extends React.Component {
                 console.log(error);
                 alert("Error to reset token Server");
             });
+        this.setState({row:""});        
     }
 
 
@@ -85,10 +87,25 @@ export default class ABMServer extends React.Component {
                 console.log(error);
                 alert("Error to delete Server");
             });
+        this.setState({row:""});
     }
 
     onPingServer(row) {
-        alert("ping to server: " + row.id);
+        let currentComponent = this;
+        var link = row.url + "/admin/ping";
+
+        Axios
+            .get(link)
+            .then(function (response) {
+                currentComponent.setState({ server: response.data });
+                alert("The Server is Availible");
+            })
+            .catch(function (error) {
+                currentComponent.setState({ responseError: true });
+                console.log(error);
+                alert("The Server is not Availible");
+            });
+        this.setState({row:""});
     }
 
 

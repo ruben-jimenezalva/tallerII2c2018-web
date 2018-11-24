@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Routes from "./Routes";
-import Auth from "./containers/utils/auth";
+import Auth from "./components/utils/auth";
 import Header from './Header';
 import "./App.css";
 
