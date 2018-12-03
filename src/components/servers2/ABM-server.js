@@ -16,6 +16,7 @@ export default class ABMServer extends React.Component {
     }
 
     onAddRow(row) {
+        this.clear();
         this.createServer(row);
     }
 
@@ -37,11 +38,11 @@ export default class ABMServer extends React.Component {
                 console.log(error);
                 alert("Error to create Server");
             });
-        this.setState({row:""});        
     }
 
-    onResetServer(row) {
-        this.resetTokenServer(row);
+    onResetServer(row_server) {
+        this.clear();
+        this.resetTokenServer(row_server);
     }
 
     resetTokenServer(data) {
@@ -59,11 +60,11 @@ export default class ABMServer extends React.Component {
                 console.log(error);
                 alert("Error to reset token Server");
             });
-        this.setState({row:""});        
     }
 
 
     onDeleteRow(row) {
+        this.clear();
         for (const index in row) {
             this.deleteServer(row[index]);
         }
@@ -87,15 +88,19 @@ export default class ABMServer extends React.Component {
                 console.log(error);
                 alert("Error to delete Server");
             });
-        this.setState({row:""});
     }
 
     onPingServer(row) {
+        this.clear();
         let currentComponent = this;
-        var link = row.url + "/admin/ping";
+        var link = ApiLinks.Ping + row.id;
+
+        var config = {
+            headers: { 'Authorization': Auth.getToken() }
+        };
 
         Axios
-            .get(link)
+            .get(link,config)
             .then(function (response) {
                 currentComponent.setState({ server: response.data });
                 alert("The Server is Availible");
@@ -103,13 +108,13 @@ export default class ABMServer extends React.Component {
             .catch(function (error) {
                 currentComponent.setState({ responseError: true });
                 console.log(error);
-                alert("The Server is not Availible");
+                alert("The Server is NOT Availible");
             });
-        this.setState({row:""});
     }
 
 
     onCellEdit(row) {
+        this.clear();
         this.setState({row:row});
     }
 
@@ -131,6 +136,10 @@ export default class ABMServer extends React.Component {
                 console.log(error);
                 alert("Error to update Server");
             });
+        this.clear();
+    }
+
+    clear(){
         this.setState({row:""});
         this.setState({token:""});
     }

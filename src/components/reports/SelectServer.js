@@ -14,6 +14,7 @@ class SelectServer extends React.Component{
     }
 
     componentWillMount() {
+        this.setState({servers: ""});
         this.setState({responseError: false});
         var config = {
             headers: { 'Authorization':Auth.getToken() }
@@ -28,24 +29,18 @@ class SelectServer extends React.Component{
             })
             .catch(function (error) {
                 console.log(error);
-                currentComponent.setState({responseError: true});                
+                currentComponent.setState({responseError: true});
+                this.props.serverSelected("");
             });
     }
 
-  /*  handleSelect(server){
-        //this.props.serverSelected(server)
-        alert("algo");
-    }*/
 
     handleChange = event =>{
-        /*this.setState(
-            {[event.target.id] : event.target.value}
-        );*/
         this.props.serverSelected(event.target.value)            
     }
 
     render(){
-        if(this.state.servers === ""){
+        if(this.state.servers === "" || this.state.responseError){
             return<p>
                 Not Results
             </p>
