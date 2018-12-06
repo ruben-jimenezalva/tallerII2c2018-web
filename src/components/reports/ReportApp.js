@@ -22,7 +22,8 @@ class ReportApp extends React.Component {
 
     serverSelected(server_id){
         let currentComponent = this;
-        var link = ApiLinks.Report + server_id;
+        var link = ApiLinks.Report + '/'+ server_id;
+        //alert(link);
 
         var config = {
             headers: { 'Authorization': Auth.getToken() }

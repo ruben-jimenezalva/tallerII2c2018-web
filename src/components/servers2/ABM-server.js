@@ -93,7 +93,8 @@ export default class ABMServer extends React.Component {
     onPingServer(row) {
         this.clear();
         let currentComponent = this;
-        var link = ApiLinks.Ping + row.id;
+        var link = ApiLinks.Ping + '/'+row.id;
+        //alert(link);
 
         var config = {
             headers: { 'Authorization': Auth.getToken() }
